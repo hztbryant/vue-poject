@@ -8,6 +8,7 @@ import searchcontainer from "./components/Tabbar/searchcontainer.vue"
 
 import newslist from "./components/news/newslist.vue"
 import newsinfo from "./components/news/newsinfo.vue"
+import photolist from "./components/photolists/photolist.vue"
 const router = new VueRouter({
     routes: [
         { path: "/", redirect: "/home" },
@@ -16,7 +17,9 @@ const router = new VueRouter({
         { path: "/shopcar", component: shopcarcontainer },
         { path: "/search", component: searchcontainer },
         { path: "/home/newslist", component: newslist },
-        { path: "/home/newsinfo/:id", component: newsinfo }
+        { path: "/home/newsinfo/:id", component: newsinfo },
+        { path: "/home/photolist", component: photolist }
+
 
     ],
 

@@ -15,7 +15,7 @@
                         </router-link>
                     </li>
                      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                        <router-link to="#">
+                        <router-link to="/home/photolist">
 		                     <img src="../../images/menu2.png" alt="">
 		                    <div class="mui-media-body">图片分享</div>
                         </router-link>
@@ -63,7 +63,7 @@ export default {
     methods:{
         getbo(){
             this.$http.get("api/getlunbo").then(result=>{
-                console.log(result);
+                // console.log(result);
                 
                 if(result.body.status==0){
                     this.lunbolist=result.body.message
@@ -79,7 +79,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mint-swipe{
-    height: 200px;
+    height: 300px;
 }
 .mui-grid-9{
     background-color: #fff;
@@ -92,4 +92,5 @@ export default {
         border:0;
     }
 }
+
 </style>

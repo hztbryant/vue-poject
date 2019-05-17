@@ -54,7 +54,7 @@ export default {
                 return Toast("内容为空，请重新输入")
             }
             this.$http.post("api/postcomment/"+this.$route.params.id,{content:this.msg.trim()},{emulateJSON:true}).then(function (res) {
-                console.log(res);
+                // console.log(res);
                 
                const ha={
                    user_name:"黄志涛",
