@@ -2,8 +2,8 @@
     <div class="cmt-container">
         <h3>发表评论</h3>
         <hr>
-        <textarea placeholder="请输入要BB的内容（最多120字）" maxlength="120"></textarea>
-        <mt-button type="primary" size="large">发表评论</mt-button>
+        <textarea placeholder="请输入要BB的内容（最多120字）" maxlength="120" v-model="msg"></textarea>
+        <mt-button type="primary" size="large" @click="addcomment">发表评论</mt-button>
         <div class="cmt-list">
             <div class="cmt-item" v-for="(item,i) in cmtlist" :key="item.add_time">
                 <div class="cmt-title">
@@ -19,11 +19,13 @@
     
 </template>
 <script>
+import {Toast} from "mint-ui"
 export default {
     data(){
         return{
             pageIndex:1,
-            cmtlist:[]
+            cmtlist:[],
+            msg:''
         }
     },
     props:["id"],
@@ -34,7 +36,7 @@ export default {
         getcomment(){
            
                this.$http.get("api/getcomments/"+this.id+"?pageindex="+this.pageIndex).then(res=>{
-                console.log(res);
+                // console.log(res);
                 if(res.body.status==0){
                    this.cmtlist=this.cmtlist.concat(res.body.message)
                 }else{
@@ -46,6 +48,22 @@ export default {
         getmore(){
             this.pageIndex++
             this.getcomment()
+        },
+        addcomment(){
+            if(this.msg.trim().length===0){
+                return Toast("内容为空，请重新输入")
+            }
+            this.$http.post("api/postcomment/"+this.$route.params.id,{content:this.msg.trim()},{emulateJSON:true}).then(function (res) {
+                console.log(res);
+                
+               const ha={
+                   user_name:"黄志涛",
+                   add_time: Date.now(),
+                    content: this.msg.trim()
+               }
+               this.cmtlist.unshift(ha)
+                this.msg = "";
+              })
         }
     }
 }

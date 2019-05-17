@@ -14,6 +14,7 @@
 </template>
 <script>
 import comment from "../subcomponents/comment.vue"
+
 export default {
     data(){
         return{
@@ -27,7 +28,7 @@ export default {
     methods:{
         getnewsinfo(){
             this.$http.get("api/getnew/"+this.id).then(res=>{
-                console.log(res);
+                // console.log(res);
                 if(res.body.status==0){
                    this.infolist=res.body.message
                 }else{

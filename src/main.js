@@ -20,6 +20,7 @@ Vue.use(VueResource)
 
 
 Vue.http.options.root = 'http://localhost:5000';
+Vue.http.options.emulateJSON = true;
 // 格式化时间
 import moment from "moment"
 Vue.filter('dateFormat', function(dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
